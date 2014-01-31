@@ -1,4 +1,4 @@
-= Groongaを支える取り組み
+= Groonga Meeupt 2014/01/29
 
 == For author
 
