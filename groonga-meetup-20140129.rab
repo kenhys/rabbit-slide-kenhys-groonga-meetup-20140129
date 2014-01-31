@@ -1,0 +1,159 @@
+= Groonga meetup #1
+
+: author
+   林健太郎
+: institution
+   クリアコード
+: content-source
+   Groonga meetup
+: date
+   2014/01/29
+: allotted-time
+  7m
+: theme
+  .
+
+= 発表の内容
+
+  * 今月のGroonga
+  * 今月のMroonga
+  * ドキュメントの話
+  * もくもく作業の話
+
+= 今月のGroonga(1)
+
+  * Groonga 3.1.2
+    * ロックタイムアウトをカスタマイズ可
+      * コンパイル時に指定
+      * 動的には変更する手段はない
+
+= 今月のGroonga(2)
+
+  * GRN_JA_SKIP_SAME_VALUE_PUT
+    * 標準で有効になりました
+    * 同じ値による更新で肥大化しないように
+
+= 今月のGroonga(3)
+
+  * 検索のとりこぼしの改善
+    * ネストしたインデックス & 複数キーワードによる絞り込み
+
+  select Memos \
+    --match_columns "title || content || owner.name" \
+    --query "Alice Rroonga" \
+    --output_columns '_key'
+
+# load --table Users
+# [
+# {"_key": "alice",  "name": "Alice"},
+# {"_key": "bob",    "name": "Bob"},
+# {"_key": "carlos", "name": "Carlos"}
+# ]
+
+# load --table Memos
+# [
+# {"_key": "alice1", "owner": "alice",
+#  "title": "Groonga", "content": "Groonga is full text search engine."},
+# {"_key": "alice2", "owner": "alice",
+#  "title": "Rroonga", "content": "Rroonga is the Ruby bindings of Groonga."},
+# {"_key": "bob1", "owner": "bob",
+#  "title": "Mroonga", "content": "Mroonga is a MySAL storage engine based on Groonga."}
+# ]
+
+= 今月のGroonga(4)
+
+  * よりECMAScriptっぽく
+    * snippet_htmlでフォールバック値を指定できるように
+      * snippet_html(XXX) || 'default'
+
+= 今月のMroonga
+
+  * Mroonga 3.12
+    * ロックタイムアウトをカスタマイズ可
+      * SET GLOBALで動的には変更可
+    * WプラグマをTritonn互換に
+      * 0 -> 1オリジンへ変更
+      * セクションの重みは 0 -> 1へ変更
+  
+= Groongaのドキュメント(1)
+
+  * Sphinxの国際化機能を使って
+  * 原稿はReStructuredTextベースで
+  * 翻訳をおなじみgettextで
+  * poの位置情報がじゃまくさい
+
+= Groongaのドキュメント(2)
+
+  * poの位置情報がじゃまくさい
+    * Sphinx issue #1183 同じこと思っている人がいた
+    * Sphinxを修正
+      * uuidを出力しない
+      * location情報を出力しない
+    * あとでレポートする予定
+
+= 今月のgroonga-gobject(1)
+
+  * 1.0.0 リリース
+    * いろんな言語からGroonga叩けるよ
+      * GObject Introspectionを使っていろいろな言語からGroongaを使う方法
+        * http://qiita.com/groonga/items/71b145b37d77bd160bf2
+
+= 今月のgroonga-gobject(2)
+
+  * 対応ディストリビューション
+    * Debian wheezy以降
+    * Ubuntu 12.10(Quantal)以降
+    * CentOSは対象外
+      * gobject-introspectionのパッケージない
+
+= 今月のgroonga-gobject(2)
+
+  * パッケージでらくらくインストール
+    * sudo apt-get install gir1.2-groonga
+    * sudo apt-get install libgroonga-gobject0
+
+= 来月のGroonga/Mroonga
+
+  * メジャーバージョンアップ
+    * 3.x -> 4.x
+    * 中国語のトークナイザーのバンドル?
+      * Friso https://code.google.com/p/friso/
+
+= もくもく作業の話
+
+  * ドキュメントの表記の統一
+  * リファレンスコマンドの修正
+  * 週刊Groongaの翻訳
+
+= groongaからGroongaへ(1)
+    
+  * ドキュメントの表記の統一が不完全
+    * 手伝ってくれる人募集してます！
+      * yokuさんやcosmo0920さんの協力
+      * http://groonga.org/ja/blog/2013/10/30/use-capitalized-notation.html
+      * http://mroonga.org/ja/blog/2013/10/30/use-capitalized-notation.html
+
+= groongaからGroongaへ(2)
+    
+  * ドキュメントの表記の統一が不完全
+    * Sphinxを使ったドキュメントの修正
+    * ウェブサイトのHTMLの修正
+
+= コマンドのドキュメント
+
+  * フォーマットの新旧混在を統一したい
+    * 手伝ってくれる人募集してます！
+      * http://groonga.org/ja/blog/2013/08/12/reference-command-documentation.html
+    * Sphinxを使ったドキュメントの修正
+
+= 週刊Groongaの翻訳
+    
+  * 記事を翻訳して海外展開？
+    * blogroongaに英語版を用意して情報発信
+    * 手伝ってくれる人募集してます！
+      * http://groonga.org/ja/blog/2013/07/22/qiita-translation.html
+
+= 感謝
+
+* WEICさんありがとうございます！
+  * 会場提供
