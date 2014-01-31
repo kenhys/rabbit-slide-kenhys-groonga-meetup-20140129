@@ -1,4 +1,4 @@
-= Groonga Meeupt 2014/01/29
+= Groonga Meetup 2014/01/29
 
 == For author
 
